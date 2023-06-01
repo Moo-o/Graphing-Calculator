@@ -8,5 +8,26 @@ package nz.ac.auckland.se281.datastructures;
  * @param <T> The type of each vertex.
  */
 public class Edge<T> {
-  public Edge(T source, T destination) {}
+  /**
+   * Creates a new edge between two verticies.
+   *
+   * @param source The source vertex.
+   * @param destination The destination vertex.
+   */
+  protected final T source;
+
+  protected final T destination;
+
+  public Edge(T source, T destination) {
+    this.source = source;
+    this.destination = destination;
+  }
+
+  public T getSource() {
+    return source;
+  }
+
+  public T getDestination() {
+    return destination;
+  }
 }

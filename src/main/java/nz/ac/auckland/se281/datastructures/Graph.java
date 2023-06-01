@@ -11,7 +11,13 @@ import java.util.Set;
  * @param <T> The type of each vertex, that have a total ordering.
  */
 public class Graph<T extends Comparable<T>> {
-  public Graph(Set<T> verticies, Set<Edge<T>> edges) {}
+  protected final Set<T> verticies;
+  protected final Set<Edge<T>> edges;
+
+  public Graph(Set<T> verticies, Set<Edge<T>> edges) {
+    this.verticies = verticies;
+    this.edges = edges;
+  }
 
   public Set<T> getRoots() {
     // TODO: Task 1.
@@ -19,8 +25,20 @@ public class Graph<T extends Comparable<T>> {
   }
 
   public boolean isReflexive() {
-    // TODO: Task 1.
-    throw new UnsupportedOperationException();
+    // checks if the graph is reflexive
+    int reflexiveCount = 0;
+    for (T vertex : verticies) {
+      for (Edge<T> edge : edges) {
+        if (edge.getSource().equals(vertex) && edge.getDestination().equals(vertex)) {
+          reflexiveCount++;
+        }
+      }
+    }
+    if (reflexiveCount == verticies.size()) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   public boolean isSymmetric() {
