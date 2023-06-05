@@ -210,8 +210,42 @@ public class Graph<T extends Comparable<T>> {
   }
 
   public List<T> iterativeDepthFirstSearch() {
-    // TODO: Task 2.
-    throw new UnsupportedOperationException();
+    List<T> result = new ArrayList<>();
+    Set<T> visited = new HashSet<>();
+    Stack<T> stack = new Stack<>();
+
+    // Choose a starting vertex
+    // Assuming you have a method to get the starting vertex, let's call it getStartingVertex()
+    Set<T> roots = getRoots();
+    for (T startingVertex : roots) {
+
+      // Push the starting vertex onto the stack and mark it as visited
+      stack.push(startingVertex);
+      visited.add(startingVertex);
+
+      while (!stack.isEmpty()) {
+        // Pop a vertex from the stack
+        T vertex = stack.pop();
+
+        // Process the vertex (e.g., add it to the result list)
+        result.add(vertex);
+
+        // Get the adjacent vertices of the current vertex
+        List<T> adjacentVertices = getAdjacentVertices(vertex);
+        ListDescender<T> sorter = new ListDescender<>();
+        sorter.bubbleSort(adjacentVertices);
+
+        for (T adjacentVertex : adjacentVertices) {
+          if (!visited.contains(adjacentVertex)) {
+            // Push the adjacent vertex onto the stack if it hasn't been visited
+            stack.push(adjacentVertex);
+            visited.add(adjacentVertex);
+          }
+        }
+      }
+    }
+
+    return result;
   }
 
   public List<T> recursiveBreadthFirstSearch() {
