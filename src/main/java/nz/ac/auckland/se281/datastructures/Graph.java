@@ -1,5 +1,6 @@
 package nz.ac.auckland.se281.datastructures;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -159,8 +160,53 @@ public class Graph<T extends Comparable<T>> {
   }
 
   public List<T> iterativeBreadthFirstSearch() {
-    // TODO: Task 2.
-    throw new UnsupportedOperationException();
+    List<T> result = new ArrayList<>();
+    Set<T> visited = new HashSet<>();
+    Queue<T> queue = new Queue<>();
+
+    // Choose a starting vertex
+    // Assuming you have a method to get the starting vertex, let's call it getStartingVertex()
+    Set<T> roots = getRoots();
+    for (T startingVertex : roots) {
+
+      // Enqueue the starting vertex and mark it as visited
+      queue.enqueue(startingVertex);
+      visited.add(startingVertex);
+
+      while (!queue.isEmpty()) {
+        // Dequeue a vertex from the queue
+        T vertex = queue.dequeue();
+
+        // Process the vertex (e.g., add it to the result list)
+        result.add(vertex);
+
+        // Get the adjacent vertices of the current vertex
+        List<T> adjacentVertices = getAdjacentVertices(vertex);
+        ListSorter<T> sorter = new ListSorter<>();
+        sorter.bubbleSort(adjacentVertices);
+
+        for (T adjacentVertex : adjacentVertices) {
+          if (!visited.contains(adjacentVertex)) {
+            // Enqueue the adjacent vertex if it hasn't been visited
+            queue.enqueue(adjacentVertex);
+            visited.add(adjacentVertex);
+          }
+        }
+      }
+    }
+
+    return result;
+  }
+
+  private List<T> getAdjacentVertices(T vertex) {
+    // return list of adjacent vertices
+    List<T> adjacentVertices = new ArrayList<T>();
+    for (Edge<T> edge : edges) {
+      if (edge.getSource().equals(vertex)) {
+        adjacentVertices.add(edge.getDestination());
+      }
+    }
+    return adjacentVertices;
   }
 
   public List<T> iterativeDepthFirstSearch() {
