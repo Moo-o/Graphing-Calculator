@@ -1,11 +1,11 @@
 package nz.ac.auckland.se281.datastructures;
 
 public class Node<T> {
-    T data;
-    Node<T> next;
+  protected T data;
+  protected Node<T> next;
 
-    public Node(T data) {
-        this.data = data;
-        this.next = null;
-    }
+  public Node(T data) {
+    this.data = data;
+    this.next = null;
+  }
 }

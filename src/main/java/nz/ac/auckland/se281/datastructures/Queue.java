@@ -1,8 +1,8 @@
 package nz.ac.auckland.se281.datastructures;
 
 public class Queue<T> {
-  Node<T> head;
-  Node<T> tail;
+  protected Node<T> head;
+  protected Node<T> tail;
 
   public Queue() {
     this.head = null;
