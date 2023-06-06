@@ -262,13 +262,13 @@ public class Graph<T extends Comparable<T>> {
     // Assuming you have a method to get the starting vertex, let's call it getStartingVertex()
     Set<T> roots = getRoots();
     for (T startingVertex : roots) {
-      recursiveBFS(startingVertex, visited, queue, result);
+      recursiveSearchBreadth(startingVertex, visited, queue, result);
     }
 
     return result;
   }
 
-  private void recursiveBFS(T vertex, Set<T> visited, Queue<T> queue, List<T> result) {
+  private void recursiveSearchBreadth(T vertex, Set<T> visited, Queue<T> queue, List<T> result) {
     visited.add(vertex);
     result.add(vertex);
 
@@ -287,7 +287,7 @@ public class Graph<T extends Comparable<T>> {
     // Process the next vertex in the queue recursively
     if (!queue.isEmpty()) {
       T nextVertex = queue.dequeue();
-      recursiveBFS(nextVertex, visited, queue, result);
+      recursiveSearchBreadth(nextVertex, visited, queue, result);
     }
   }
 
@@ -299,13 +299,13 @@ public class Graph<T extends Comparable<T>> {
     // Assuming you have a method to get the starting vertex, let's call it getStartingVertex()
     Set<T> roots = getRoots();
     for (T startingVertex : roots) {
-      recursiveDFS(startingVertex, visited, result);
+      recursiveSearchDepth(startingVertex, visited, result);
     }
 
     return result;
   }
 
-  private void recursiveDFS(T vertex, Set<T> visited, List<T> result) {
+  private void recursiveSearchDepth(T vertex, Set<T> visited, List<T> result) {
     visited.add(vertex);
     result.add(vertex);
 
@@ -316,7 +316,7 @@ public class Graph<T extends Comparable<T>> {
 
     for (T adjacentVertex : adjacentVertices) {
       if (!visited.contains(adjacentVertex)) {
-        recursiveDFS(adjacentVertex, visited, result);
+        recursiveSearchDepth(adjacentVertex, visited, result);
       }
     }
   }
