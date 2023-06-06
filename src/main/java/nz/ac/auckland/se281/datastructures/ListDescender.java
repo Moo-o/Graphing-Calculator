@@ -2,7 +2,19 @@ package nz.ac.auckland.se281.datastructures;
 
 import java.util.List;
 
+/**
+ * A utility class for sorting a list of elements in descending order.
+ *
+ * @param <T> the type of elements in the list, which must implement the {@code Comparable}
+ *     interface
+ */
 public class ListDescender<T extends Comparable<T>> {
+
+  /**
+   * Sorts the specified list in descending order using the bubble sort algorithm.
+   *
+   * @param list the list to be sorted
+   */
   public void bubbleSort(List<T> list) {
     int n = list.size();
     boolean swapped;

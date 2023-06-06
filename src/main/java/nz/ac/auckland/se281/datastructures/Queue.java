@@ -1,14 +1,25 @@
 package nz.ac.auckland.se281.datastructures;
 
+/**
+ * A generic queue data structure.
+ *
+ * @param <T> the type of elements held in the queue
+ */
 public class Queue<T> {
   protected Node<T> head;
   protected Node<T> tail;
 
+  /** Constructs an empty queue. */
   public Queue() {
     this.head = null;
     this.tail = null;
   }
 
+  /**
+   * Adds the specified data to the end of the queue.
+   *
+   * @param data the data to be added to the queue
+   */
   public void enqueue(T data) {
     // create a new node
     Node<T> newNode = new Node<>(data);
@@ -23,6 +34,11 @@ public class Queue<T> {
     }
   }
 
+  /**
+   * Removes and returns the element at the front of the queue.
+   *
+   * @return the element at the front of the queue, or {@code null} if the queue is empty
+   */
   public T dequeue() {
     // if the queue is empty, return null
     if (isEmpty()) {
@@ -43,6 +59,11 @@ public class Queue<T> {
     return nodeToRemove.data;
   }
 
+  /**
+   * Checks if the queue is empty.
+   *
+   * @return {@code true} if the queue is empty, {@code false} otherwise
+   */
   public boolean isEmpty() {
     return head == null;
   }

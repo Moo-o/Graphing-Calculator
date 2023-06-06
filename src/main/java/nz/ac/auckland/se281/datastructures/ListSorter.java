@@ -2,7 +2,18 @@ package nz.ac.auckland.se281.datastructures;
 
 import java.util.List;
 
+/**
+ * A utility class for sorting a list of comparable elements using the bubble sort algorithm.
+ *
+ * @param <T> the type of elements in the list, which must implement the Comparable interface
+ */
 public class ListSorter<T extends Comparable<T>> {
+
+  /**
+   * Sorts the specified list in ascending order using the bubble sort algorithm.
+   *
+   * @param list the list to be sorted
+   */
   public void bubbleSort(List<T> list) {
     int n = list.size();
     boolean swapped;

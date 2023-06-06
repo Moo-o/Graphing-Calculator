@@ -68,6 +68,11 @@ public class Graph<T extends Comparable<T>> {
     return lowestVertex;
   }
 
+  /**
+   * Checks if the graph represented by the vertices and edges is reflexive.
+   *
+   * @return {@code true} if the graph is reflexive, {@code false} otherwise
+   */
   public boolean isReflexive() {
     // checks if the graph is reflexive
     int reflexiveCount = 0;
@@ -85,6 +90,11 @@ public class Graph<T extends Comparable<T>> {
     }
   }
 
+  /**
+   * Checks if the graph represented by the edges is symmetric.
+   *
+   * @return {@code true} if the graph is symmetric, {@code false} otherwise
+   */
   public boolean isSymmetric() {
     int symmetricCount = 0;
 
@@ -97,6 +107,7 @@ public class Graph<T extends Comparable<T>> {
         }
       }
     }
+
     if (symmetricCount == edges.size()) {
       return true;
     } else {
@@ -104,6 +115,12 @@ public class Graph<T extends Comparable<T>> {
     }
   }
 
+  /**
+   * Checks if the graph represented by the edges has a transitive relationship.
+   *
+   * @return {@code true} if the transitive relationship exists for all pairs of edges, {@code
+   *     false} otherwise
+   */
   public boolean isTransitive() {
     for (Edge<T> edge1 : edges) {
       for (Edge<T> edge2 : edges) {
@@ -126,6 +143,11 @@ public class Graph<T extends Comparable<T>> {
     return true; // All pairs satisfy the transitive relationship
   }
 
+  /**
+   * Checks if the relation represented by the graph is anti-symmetric.
+   *
+   * @return {@code true} if the relation is anti-symmetric, {@code false} otherwise
+   */
   public boolean isAntiSymmetric() {
     for (Edge<T> edge1 : edges) {
       for (Edge<T> edge2 : edges) {
@@ -140,6 +162,11 @@ public class Graph<T extends Comparable<T>> {
     return true; // All pairs satisfy the anti-symmetric relationship
   }
 
+  /**
+   * Checks if the relation represented by the graph is an equivalence relation.
+   *
+   * @return {@code true} if the relation is an equivalence relation, {@code false} otherwise
+   */
   public boolean isEquivalence() {
     // check for equivalence
     if (isReflexive() && isSymmetric() && isTransitive()) {
@@ -149,6 +176,13 @@ public class Graph<T extends Comparable<T>> {
     }
   }
 
+  /**
+   * Retrieves the equivalence class for the specified vertex.
+   *
+   * @param vertex the vertex for which to retrieve the equivalence class
+   * @return a set containing the vertices that belong to the equivalence class of the specified
+   *     vertex, or an empty set if the graph is not an equivalence relation
+   */
   public Set<T> getEquivalenceClass(T vertex) {
     // get equivalence class
     Set<T> equivalenceClass = new HashSet<T>();
@@ -164,6 +198,12 @@ public class Graph<T extends Comparable<T>> {
     }
   }
 
+  /**
+   * Performs an iterative breadth-first search on the graph and returns a list of vertices visited
+   * in the search order.
+   *
+   * @return a list of vertices visited during the iterative breadth-first search
+   */
   public List<T> iterativeBreadthFirstSearch() {
     List<T> result = new ArrayList<>();
     Set<T> visited = new HashSet<>();
@@ -214,6 +254,12 @@ public class Graph<T extends Comparable<T>> {
     return adjacentVertices;
   }
 
+  /**
+   * Performs an iterative depth-first search on the graph and returns a list of vertices visited in
+   * the search order.
+   *
+   * @return a list of vertices visited during the iterative depth-first search
+   */
   public List<T> iterativeDepthFirstSearch() {
     List<T> result = new ArrayList<>();
     Set<T> visited = new HashSet<>();
@@ -253,6 +299,12 @@ public class Graph<T extends Comparable<T>> {
     return result;
   }
 
+  /**
+   * Performs a recursive breadth-first search on the graph and returns a list of vertices visited
+   * in the search order.
+   *
+   * @return a list of vertices visited during the recursive breadth-first search
+   */
   public List<T> recursiveBreadthFirstSearch() {
     List<T> result = new ArrayList<>();
     Set<T> visited = new HashSet<>();
@@ -291,6 +343,12 @@ public class Graph<T extends Comparable<T>> {
     }
   }
 
+  /**
+   * Performs a recursive depth-first search on the graph and returns a list of vertices visited in
+   * the search order.
+   *
+   * @return a list of vertices visited during the recursive depth-first search
+   */
   public List<T> recursiveDepthFirstSearch() {
     List<T> result = new ArrayList<>();
     Set<T> visited = new HashSet<>();
