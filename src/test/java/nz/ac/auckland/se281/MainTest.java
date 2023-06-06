@@ -12,7 +12,7 @@ import org.junit.runners.Suite.SuiteClasses;
   MainTest.Task1.class,
   MainTest.Task2.class, // Uncomment this line when you start Task 2
   MainTest.Task3.class, // Uncomment this line when you start Task 3
-  // MainTest.YourTests.class, // Uncomment this line to run your own tests
+  MainTest.YourTests.class, // Uncomment this line to run your own tests
 })
 public class MainTest {
   public static class Task1 extends CliTest {
@@ -270,8 +270,52 @@ public class MainTest {
     }
 
     @Test
-    public void TY_01_your_own_test() throws Exception {
-      // Write your own test here, in the same format as the other tests.
+    public void T1_w_roots() throws Exception {
+      runCommands(OPEN_FILE, "w.txt", LIST_ROOT_VERTICIES);
+      assertContains("Successfully opened graph from file w.txt");
+      assertContains("[0]");
+    }
+
+    @Test
+    public void T1_w_antisymmetry() throws Exception {
+      runCommands(OPEN_FILE, "w.txt", CHECK_ANTISYMMETRY);
+      assertContains("Successfully opened graph from file w.txt");
+      assertContains("The graph is antisymmetric");
+    }
+
+    @Test
+    public void T1_w_equivalence() throws Exception {
+      runCommands(OPEN_FILE, "w.txt", CHECK_EQUIVALENCE);
+      assertContains("Successfully opened graph from file w.txt");
+      assertContains("The graph is NOT an equivalence relation");
+    }
+
+    @Test
+    public void T2_w_iterative_BFS() throws Exception {
+      runCommands(OPEN_FILE, "w.txt", GRAPH_SEARCH_IBFS);
+      assertContains("Successfully opened graph from file w.txt");
+      assertContains("[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]");
+    }
+
+    @Test
+    public void T2_w_iterative_DFS() throws Exception {
+      runCommands(OPEN_FILE, "w.txt", GRAPH_SEARCH_IDFS);
+      assertContains("Successfully opened graph from file w.txt");
+      assertContains("[0, 1, 3, 2, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 6]");
+    }
+
+    @Test
+    public void T2_w_recursive_BFS() throws Exception {
+      runCommands(OPEN_FILE, "w.txt", GRAPH_SEARCH_IBFS);
+      assertContains("Successfully opened graph from file w.txt");
+      assertContains("[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]");
+    }
+
+    @Test
+    public void T2_w_recursive_DFS() throws Exception {
+      runCommands(OPEN_FILE, "w.txt", GRAPH_SEARCH_IDFS);
+      assertContains("Successfully opened graph from file w.txt");
+      assertContains("[0, 1, 3, 2, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 6]");
     }
   }
 }
