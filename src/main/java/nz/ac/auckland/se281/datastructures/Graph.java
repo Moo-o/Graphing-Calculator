@@ -21,6 +21,11 @@ public class Graph<T extends Comparable<T>> {
     this.edges = edges;
   }
 
+  /**
+   * finds the roots of a graph.
+   *
+   * @return returns the set of verticies that are roots
+   */
   public Set<T> getRoots() {
     Set<T> lowestVertices = new HashSet<>();
 
@@ -249,12 +254,70 @@ public class Graph<T extends Comparable<T>> {
   }
 
   public List<T> recursiveBreadthFirstSearch() {
-    // TODO: Task 3.
-    throw new UnsupportedOperationException();
+    List<T> result = new ArrayList<>();
+    Set<T> visited = new HashSet<>();
+    Queue<T> queue = new Queue<>();
+
+    // Choose a starting vertex
+    // Assuming you have a method to get the starting vertex, let's call it getStartingVertex()
+    Set<T> roots = getRoots();
+    for (T startingVertex : roots) {
+      recursiveBFS(startingVertex, visited, queue, result);
+    }
+
+    return result;
+  }
+
+  private void recursiveBFS(T vertex, Set<T> visited, Queue<T> queue, List<T> result) {
+    visited.add(vertex);
+    result.add(vertex);
+
+    // Get the adjacent vertices of the current vertex
+    List<T> adjacentVertices = getAdjacentVertices(vertex);
+    ListSorter<T> sorter = new ListSorter<>();
+    sorter.bubbleSort(adjacentVertices);
+
+    for (T adjacentVertex : adjacentVertices) {
+      if (!visited.contains(adjacentVertex)) {
+        visited.add(adjacentVertex);
+        queue.enqueue(adjacentVertex);
+      }
+    }
+
+    // Process the next vertex in the queue recursively
+    if (!queue.isEmpty()) {
+      T nextVertex = queue.dequeue();
+      recursiveBFS(nextVertex, visited, queue, result);
+    }
   }
 
   public List<T> recursiveDepthFirstSearch() {
-    // TODO: Task 3.
-    throw new UnsupportedOperationException();
+    List<T> result = new ArrayList<>();
+    Set<T> visited = new HashSet<>();
+
+    // Choose a starting vertex
+    // Assuming you have a method to get the starting vertex, let's call it getStartingVertex()
+    Set<T> roots = getRoots();
+    for (T startingVertex : roots) {
+      recursiveDFS(startingVertex, visited, result);
+    }
+
+    return result;
+  }
+
+  private void recursiveDFS(T vertex, Set<T> visited, List<T> result) {
+    visited.add(vertex);
+    result.add(vertex);
+
+    // Get the adjacent vertices of the current vertex
+    List<T> adjacentVertices = getAdjacentVertices(vertex);
+    ListSorter<T> sorter = new ListSorter<>();
+    sorter.bubbleSort(adjacentVertices);
+
+    for (T adjacentVertex : adjacentVertices) {
+      if (!visited.contains(adjacentVertex)) {
+        recursiveDFS(adjacentVertex, visited, result);
+      }
+    }
   }
 }
